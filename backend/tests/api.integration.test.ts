@@ -49,7 +49,7 @@ describe('🧪 CRUD API - Integration Tests com Banco de Dados Real', () => {
       expect(res.status).toBe(200);
       expect(res.body.status).toBe('ok');
       expect(res.body).toHaveProperty('timestamp');
-      expect(res.body).toHaveProperty('dbType', 'mongodb');
+      expect(res.body).toHaveProperty('environment');
     });
   });
 

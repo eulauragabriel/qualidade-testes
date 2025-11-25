@@ -26,7 +26,6 @@ app.get('/health', (_req, res) => {
     status: 'ok',
     timestamp: new Date().toISOString(),
     environment: config.nodeEnv,
-    dbType: config.dbType,
   });
 });
 

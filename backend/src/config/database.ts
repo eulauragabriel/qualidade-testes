@@ -3,11 +3,7 @@ import { config } from '../config/config';
 
 export class DatabaseService {
   async connect(): Promise<void> {
-    if (config.dbType === 'mongodb') {
-      await this.connectMongoDB();
-    } else if (config.dbType === 'firebase') {
-      await this.connectFirebase();
-    }
+    await this.connectMongoDB();
   }
 
   private async connectMongoDB(): Promise<void> {
@@ -20,29 +16,8 @@ export class DatabaseService {
     }
   }
 
-  private async connectFirebase(): Promise<void> {
-    try {
-      const admin = await import('firebase-admin');
-      
-      if (!admin.apps.length) {
-        admin.initializeApp({
-          projectId: config.firebaseProjectId,
-          privateKey: config.firebasePrivateKey?.replace(/\\n/g, '\n'),
-          clientEmail: config.firebaseClientEmail,
-        } as any);
-      }
-      
-      console.log('✅ Connected to Firebase');
-    } catch (error) {
-      console.error('❌ Failed to connect to Firebase:', error);
-      throw error;
-    }
-  }
-
   async disconnect(): Promise<void> {
-    if (config.dbType === 'mongodb') {
-      await disconnect();
-      console.log('✅ Disconnected from MongoDB');
-    }
+    await disconnect();
+    console.log('✅ Disconnected from MongoDB');
   }
 }

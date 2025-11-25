@@ -25,7 +25,7 @@ export const UserList: React.FC<UserListProps> = ({ onEdit, onDelete, refreshTri
       setUsers(response.data);
       setTotal(response.pagination?.total || 0);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load users');
+      setError(err instanceof Error ? err.message : 'Erro ao carregar usuários');
     } finally {
       setLoading(false);
     }
@@ -36,13 +36,13 @@ export const UserList: React.FC<UserListProps> = ({ onEdit, onDelete, refreshTri
   }, [page, limit, status, refreshTrigger]);
 
   const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this user?')) {
+    if (confirm('Tem certeza que deseja deletar este usuário?')) {
       try {
         await apiService.deleteUser(id);
         onDelete(id);
         loadUsers();
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to delete user');
+        setError(err instanceof Error ? err.message : 'Erro ao deletar usuário');
       }
     }
   };
@@ -56,24 +56,24 @@ export const UserList: React.FC<UserListProps> = ({ onEdit, onDelete, refreshTri
       }
       loadUsers();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update status');
+      setError(err instanceof Error ? err.message : 'Erro ao atualizar status');
     }
   };
 
   return (
     <div className="user-list-container">
       <div className="list-header">
-        <h2>Users List</h2>
+        <h2>Lista de Usuários</h2>
         <div className="filters">
           <select value={status || ''} onChange={(e) => { setStatus(e.target.value as any); setPage(1); }}>
-            <option value="">All</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="">Todos</option>
+            <option value="active">Ativos</option>
+            <option value="inactive">Inativos</option>
           </select>
           <select value={limit} onChange={(e) => { setLimit(Number(e.target.value)); setPage(1); }}>
-            <option value="5">5 per page</option>
-            <option value="10">10 per page</option>
-            <option value="25">25 per page</option>
+            <option value="5">5 por página</option>
+            <option value="10">10 por página</option>
+            <option value="25">25 por página</option>
           </select>
         </div>
       </div>
@@ -81,21 +81,21 @@ export const UserList: React.FC<UserListProps> = ({ onEdit, onDelete, refreshTri
       {error && <div className="error-message">{error}</div>}
 
       {loading ? (
-        <p className="loading">Loading...</p>
+        <p className="loading">Carregando...</p>
       ) : users.length === 0 ? (
-        <p className="empty-state">No users found</p>
+        <p className="empty-state">Nenhum usuário encontrado</p>
       ) : (
         <>
           <div className="table-wrapper">
             <table className="users-table">
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>Nome</th>
                   <th>Email</th>
-                  <th>Age</th>
+                  <th>Idade</th>
                   <th>Status</th>
-                  <th>Created</th>
-                  <th>Actions</th>
+                  <th>Criado</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -114,21 +114,21 @@ export const UserList: React.FC<UserListProps> = ({ onEdit, onDelete, refreshTri
                       <button
                         className="btn btn-edit"
                         onClick={() => onEdit(user)}
-                        title="Edit"
+                        title="Editar"
                       >
                         ✎
                       </button>
                       <button
                         className={`btn btn-toggle ${user.status}`}
                         onClick={() => handleToggleStatus(user)}
-                        title={user.status === 'active' ? 'Deactivate' : 'Reactivate'}
+                        title={user.status === 'active' ? 'Desativar' : 'Ativar'}
                       >
                         {user.status === 'active' ? '○' : '●'}
                       </button>
                       <button
                         className="btn btn-delete"
                         onClick={() => handleDelete(user._id!)}
-                        title="Delete"
+                        title="Deletar"
                       >
                         ✕
                       </button>
@@ -145,17 +145,17 @@ export const UserList: React.FC<UserListProps> = ({ onEdit, onDelete, refreshTri
               disabled={page === 1}
               className="btn"
             >
-              ← Previous
+              ← Anterior
             </button>
             <span className="page-info">
-              Page {page} of {Math.ceil(total / limit)} ({total} total)
+              Página {page} de {Math.ceil(total / limit)} ({total} total)
             </span>
             <button
               onClick={() => setPage(page + 1)}
               disabled={page >= Math.ceil(total / limit)}
               className="btn"
             >
-              Next →
+              Próxima →
             </button>
           </div>
         </>

@@ -1,7 +1,10 @@
+node_modules/
 dist/
 coverage/
 .DS_Store
 *.log
+.env
+.env.test
 .vscode/settings.json
 
 # Arquivos temporários de teste/debug

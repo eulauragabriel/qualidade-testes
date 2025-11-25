@@ -38,8 +38,8 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="header-content">
-          <h1>CRUD Application</h1>
-          <p>Manage users with MongoDB/Firebase integration</p>
+          <h1>Gerenciamento de Usuário</h1>
+          <p>Dedicado para a disciplina de Qualidade e Testes de Software</p>
         </div>
       </header>
 
@@ -54,7 +54,7 @@ function App() {
           ) : (
             <div className="action-bar">
               <button className="btn btn-primary btn-large" onClick={handleCreateNew}>
-                + Create New User
+                + Novo Usuário
               </button>
             </div>
           )}
@@ -70,7 +70,6 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>CRUD Application v1.0.0 | Powered by React + TypeScript</p>
       </footer>
     </div>
   );

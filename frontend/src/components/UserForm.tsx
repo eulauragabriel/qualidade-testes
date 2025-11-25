@@ -32,23 +32,23 @@ export const UserForm: React.FC<UserFormProps> = ({ user, onSubmit, onCancel }) 
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Nome é obrigatório';
     } else if (formData.name.length > 100) {
-      newErrors.name = 'Name must be less than 100 characters';
+      newErrors.name = 'Nome deve ter menos de 100 caracteres';
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'Email é obrigatório';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = 'Email inválido';
     }
 
     if (!formData.age) {
-      newErrors.age = 'Age is required';
+      newErrors.age = 'Idade é obrigatória';
     } else {
       const age = parseInt(formData.age);
       if (isNaN(age) || age < 18 || age > 120) {
-        newErrors.age = 'Age must be between 18 and 120';
+        newErrors.age = 'Idade deve estar entre 18 e 120';
       }
     }
 
@@ -75,10 +75,10 @@ export const UserForm: React.FC<UserFormProps> = ({ user, onSubmit, onCancel }) 
 
       if (user?._id) {
         await apiService.updateUser(user._id, userData);
-        setMessage({ type: 'success', text: 'User updated successfully!' });
+        setMessage({ type: 'success', text: 'Usuário atualizado com sucesso!' });
       } else {
         await apiService.createUser(userData);
-        setMessage({ type: 'success', text: 'User created successfully!' });
+        setMessage({ type: 'success', text: 'Usuário criado com sucesso!' });
         setFormData({ name: '', email: '', age: '' });
       }
 
@@ -111,18 +111,18 @@ export const UserForm: React.FC<UserFormProps> = ({ user, onSubmit, onCancel }) 
 
   return (
     <div className="user-form-container">
-      <h2>{user ? 'Edit User' : 'Create New User'}</h2>
+      <h2>{user ? 'Editar Usuário' : 'Novo Usuário'}</h2>
 
       <form onSubmit={handleSubmit} className="user-form">
         <div className="form-group">
-          <label htmlFor="name">Name *</label>
+          <label htmlFor="name">Nome *</label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Enter full name"
+            placeholder="Digite o nome completo"
             disabled={loading}
             maxLength={100}
           />
@@ -137,21 +137,21 @@ export const UserForm: React.FC<UserFormProps> = ({ user, onSubmit, onCancel }) 
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Enter email address"
+            placeholder="Digite o email"
             disabled={loading}
           />
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="age">Age *</label>
+          <label htmlFor="age">Idade *</label>
           <input
             type="number"
             id="age"
             name="age"
             value={formData.age}
             onChange={handleChange}
-            placeholder="Enter age (18-120)"
+            placeholder="Digite a idade (18-120)"
             disabled={loading}
             min="18"
             max="120"
@@ -167,7 +167,7 @@ export const UserForm: React.FC<UserFormProps> = ({ user, onSubmit, onCancel }) 
 
         <div className="form-actions">
           <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? 'Saving...' : user ? 'Update User' : 'Create User'}
+            {loading ? 'Salvando...' : user ? 'Atualizar' : 'Criar'}
           </button>
           <button
             type="button"
@@ -175,7 +175,7 @@ export const UserForm: React.FC<UserFormProps> = ({ user, onSubmit, onCancel }) 
             onClick={onCancel}
             disabled={loading}
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </form>
