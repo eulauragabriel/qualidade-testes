@@ -1,0 +1,11 @@
+dist/
+coverage/
+.DS_Store
+*.log
+.vscode/settings.json
+
+# Arquivos temporários de teste/debug
+test_*.txt
+*_debug.txt
+.test-results/
+*.tmp

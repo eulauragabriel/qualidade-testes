@@ -1,0 +1,23 @@
+{
+  "name": "crud-fullstack-app",
+  "version": "1.0.0",
+  "description": "Full-stack CRUD application with Express Backend and React Frontend",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:back": "cd backend && npm run dev",
+    "dev:front": "cd frontend && npm run dev",
+    "start:back": "cd backend && npm start",
+    "test": "cd backend && npm test",
+    "test:watch": "cd backend && npm test:watch",
+    "build:back": "cd backend && npm run build",
+    "build:front": "cd frontend && npm run build",
+    "lint:back": "cd backend && npm run lint"
+  },
+  "keywords": ["crud", "typescript", "express", "react", "fullstack"],
+  "author": "",
+  "license": "MIT"
+}

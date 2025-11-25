@@ -1,0 +1,22 @@
+node_modules/
+dist/
+build/
+coverage/
+.DS_Store
+*.log
+.env
+.env.test
+.vscode/settings.json
+.idea/
+
+# Arquivos temporários de teste/debug
+test_*.txt
+*_debug.txt
+.test-results/
+*.tmp
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
